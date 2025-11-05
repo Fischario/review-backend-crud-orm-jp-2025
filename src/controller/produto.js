@@ -1,4 +1,3 @@
-import produto from "../model/produto.js"
 import ServiceProduto from "../service/produto.js"
 
 class ControllerProduto {
@@ -34,8 +33,11 @@ class ControllerProduto {
     }
     async Alterar(req, res) {
         try {
-            const { nome, disponivel, qtde } = req.body
-            await ServiceProduto.Alterar(nome, disponivel, qtde)
+            const id = req.params.id
+            const nome = req.body?.nome
+            const disponivel = req.body?.disponivel
+            const qtde = req.body?.qtde
+            await ServiceProduto.Alterar(id, nome, disponivel, qtde)
             res.status(200).send()
         } catch (error) {
             res.status(500).send({ msg: error.message })
@@ -43,7 +45,9 @@ class ControllerProduto {
     }
     async Deletar(req, res) {
         try {
-            res.status(200).send('salam aleikum')
+            const id = req.params.id
+            await ServiceProduto.Deletar(id)
+            res.status(204).send()
         } catch (error) {
             res.status(500).send({ msg: error.message })
         }

@@ -13,9 +13,9 @@ class ServiceProduto {
     }
     async Alterar(id, nome, disponivel, qtde) {
         const produto = await Produto.findByPk(id)
-        produto.nome = nome
-        produto.disponivel = disponivel
-        produto.qtde = qtde
+        produto.nome = nome || produto.nome
+        produto.disponivel = disponivel || produto.disponivel
+        produto.qtde = qtde || produto.qtde
 
         await produto.save()
     }
