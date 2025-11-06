@@ -2,7 +2,7 @@ import Produto from '../model/produto.js';
 
 class ServiceProduto {
     async PegarTodos() {
-        return Produto.findAll()
+        return await Produto.findAll()
     }
     async PegarUm(id) {
         const produto = await Produto.findByPk(id)
